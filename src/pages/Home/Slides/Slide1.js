@@ -3,6 +3,7 @@
  * @module Home/slide1
  */
 import React from 'react'
+import { useThree } from '@react-three/fiber'
 
 /**
  * @function Slide1
@@ -11,9 +12,10 @@ import React from 'react'
  * @return {Object} Return the dom of the Slide1
  */
 const Slide1 = ({ handleOnClick }) => {
+  const viewport = useThree((state) => state.viewport)
   return (
     <mesh position={[0, 0, 0]} onClick={handleOnClick}>
-      <boxGeometry />
+      <boxGeometry args={[viewport.width, viewport.height, 1]} />
       <meshPhongMaterial />
     </mesh>
   )

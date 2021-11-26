@@ -1,16 +1,11 @@
 ![Alt text](documentation/video.gif?raw=true "REACT-APP-GLSL")
 
-# REACT APP TEMPLATE
+# World Website Kevin
 
 ## Goal
 
-This project is a template for building React App linked to WebGl with all my favorite tools already configured.
-
-Obviously, the app is using the latest version of `react`. For avoiding the relative path, I modified the webpack and allowing the import with an alias. I also added the support for sass files.
-
-In addition, I added `prettier` and configured it for working well with `esLint`. Finally, I added the basic usefull package such as the router and the helmet.  
-
-For the WebGl part, I am using `React Three Fiber` and `GLSL` for the shader. For a starting point, the project already has 2 pages with few meshes, 1 GLSL transition and a scroll linked to the canvas.
+This project is a website for regrouping my works in one website. It will connect all my website together in one piece that we could just scroll easily.
+It will take inspiration from my previous version World-Website.
 
 ## Plan of the presentation
 
@@ -52,6 +47,14 @@ npm run build:docs
 
 
 ## Development
+
+#### Technologies
+
+Obviously, the app is using the latest version of `react`. For avoiding the relative path, I modified the webpack and allowing the import with an alias. I also added the support for sass files.
+
+In addition, I added `prettier` and configured it for working well with `esLint`. Finally, I added the basic usefull package such as the router and the helmet.  
+
+For the WebGl part, I am using `React Three Fiber` and `GLSL` for the shader. For a starting point, the project already has 2 pages with few meshes, 1 GLSL transition and a scroll linked to the canvas.
 
 #### Creating a page
 
