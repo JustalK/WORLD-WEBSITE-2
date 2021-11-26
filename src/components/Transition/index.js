@@ -6,7 +6,7 @@
 import React, { useRef } from 'react'
 import { useThree, useFrame } from '@react-three/fiber'
 import { useLocation } from 'wouter'
-import transitionMaterial from './Materials'
+import './Materials'
 
 /**
  * @function Transition
