@@ -6,14 +6,17 @@ export default function Cursor({ cursorPosition }) {
   const viewport = useThree((state) => state.viewport)
   const ref = useRef()
   const material = useRef()
-  console.log(cursorPosition, viewport)
+
   useFrame(() => {
-    ref.current.position.x = cursorPosition.current.x
+    ref.current.position.x =
+      (viewport.width * (2 * cursorPosition.current.x - 1)) / 2
+    ref.current.position.y =
+      -(viewport.height * (2 * cursorPosition.current.y - 1)) / 2
   })
 
   return (
     <>
-      <mesh ref={ref} position={[0, 0, 0.0001]}>
+      <mesh ref={ref} position={[0, 0, 1]}>
         <circleGeometry args={[0.05, 32]} />
         <cursorMaterial ref={material} color={'#ffffff'} />
       </mesh>
