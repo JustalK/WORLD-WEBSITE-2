@@ -15,7 +15,7 @@ const Slide1 = ({ handleOnClick }) => {
   const viewport = useThree((state) => state.viewport)
   return (
     <mesh position={[0, 0, 0]} onClick={handleOnClick}>
-      <boxGeometry args={[viewport.width, viewport.height, 1]} />
+      <planeGeometry args={[viewport.width, viewport.height]} />
       <meshPhongMaterial />
     </mesh>
   )

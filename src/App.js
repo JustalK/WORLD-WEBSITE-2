@@ -8,6 +8,7 @@ import Home from '@pages/Home'
 import Secondary from '@pages/Secondary'
 
 export default function App() {
+  const cursorPosition = useRef({ x: 0.5, y: 0.5 })
   const scrollRef = useRef()
   const scroll = useRef(0)
   const totalSlides = useRef(4)
@@ -23,7 +24,15 @@ export default function App() {
   }
 
   return (
-    <div id="canvas-container">
+    <div
+      id="canvas-container"
+      onPointerMove={(e) => {
+        cursorPosition.current = {
+          x: e.clientX / window.innerWidth,
+          y: e.clientY / window.innerHeight
+        }
+      }}
+    >
       <Canvas scrollRef={scrollRef}>
         <Suspense fallback={null}>
           <Scroll scroll={scroll}>
@@ -31,7 +40,7 @@ export default function App() {
               <Secondary loadedPage={loadedPage} />
             </Route>
             <Route path={ROUTE_HOME}>
-              <Home loadedPage={loadedPage} />
+              <Home cursorPosition={cursorPosition} loadedPage={loadedPage} />
             </Route>
           </Scroll>
         </Suspense>
