@@ -4,6 +4,7 @@
  */
 import React from 'react'
 import { useThree } from '@react-three/fiber'
+import { SLIDE } from '@src/constants/layers'
 
 /**
  * @function Slide1
@@ -14,7 +15,7 @@ import { useThree } from '@react-three/fiber'
 const Slide1 = ({ handleOnClick }) => {
   const viewport = useThree((state) => state.viewport)
   return (
-    <mesh position={[0, 0, 0]} onClick={handleOnClick}>
+    <mesh position={[0, 0, 0]} renderOrder={SLIDE} onClick={handleOnClick}>
       <planeGeometry args={[viewport.width, viewport.height]} />
       <meshPhongMaterial />
     </mesh>
