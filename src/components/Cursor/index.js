@@ -18,7 +18,7 @@ export default function Cursor({ cursorPositionRef }) {
     <>
       <mesh ref={ref} renderOrder={CURSOR} position={[0, 0, 0]}>
         <circleGeometry args={[0.05, 32]} />
-        <cursorMaterial color={'#ffffff'} />
+        <cursorMaterial />
       </mesh>
     </>
   )

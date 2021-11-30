@@ -6,6 +6,7 @@
 import React, { useRef } from 'react'
 import { useThree, useFrame } from '@react-three/fiber'
 import { useLocation } from 'wouter'
+import { TRANSITION } from '@src/constants/layers'
 import './Materials'
 
 /**
@@ -33,7 +34,7 @@ const Transition = ({ pageSlides, activated, route }) => {
   })
 
   return (
-    <mesh position={[0, 0, 1]}>
+    <mesh position={[0, 0, 0]} renderOrder={TRANSITION}>
       <planeGeometry
         args={[viewport.width, pageSlides * 2 * viewport.height, 32, 32]}
       />

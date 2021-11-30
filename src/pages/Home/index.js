@@ -4,7 +4,6 @@
  */
 import React, { useRef, useEffect } from 'react'
 import Transitions from '@components/Transition'
-import Cursor from '@components/Cursor'
 import { ROUTE_SECONDARY } from '@constants/routes'
 import Slide1 from './Slides/Slide1'
 import Slide2 from './Slides/Slide2'
@@ -20,7 +19,7 @@ const pageSlides = 4
  * @param {function} loadedPage The function to call once the page is loaded
  * @return {Object} Return the dom of the Home
  */
-export default function Home({ cursorPositionRef, loadedPage }) {
+export default function Home({ loadedPage }) {
   const activated = useRef(false)
 
   const handleOnClick = () => {
@@ -44,7 +43,6 @@ export default function Home({ cursorPositionRef, loadedPage }) {
       <Slide2 handleOnClick={handleOnClick} />
       <Slide3 handleOnClick={handleOnClick} />
       <Slide4 handleOnClick={handleOnClick} />
-      <Cursor cursorPositionRef={cursorPositionRef} />
     </>
   )
 }

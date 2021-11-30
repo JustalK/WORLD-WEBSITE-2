@@ -6,6 +6,7 @@ import Panel from '@components/Panel'
 import { Route } from 'wouter'
 import Home from '@pages/Home'
 import Secondary from '@pages/Secondary'
+import Cursor from '@components/Cursor'
 
 export default function App() {
   const cursorPositionRef = useRef({ x: 0.5, y: 0.5 })
@@ -47,6 +48,7 @@ export default function App() {
             </Route>
           </Scroll>
         </Suspense>
+        <Cursor cursorPositionRef={cursorPositionRef} />
       </Canvas>
       <div ref={scrollRef} onScroll={doScroll} className="scroll">
         <Panel path={ROUTE_SECONDARY} size={200} />
