@@ -5,6 +5,7 @@
 import React from 'react'
 import { useThree } from '@react-three/fiber'
 import { SLIDE } from '@src/constants/layers'
+import Image from '@src/components/Image'
 
 /**
  * @function Slide1
@@ -18,6 +19,7 @@ const Slide1 = ({ handleOnClick }) => {
     <mesh position={[0, 0, 0]} renderOrder={SLIDE} onClick={handleOnClick}>
       <planeGeometry args={[viewport.width, viewport.height]} />
       <meshPhongMaterial />
+      <Image />
     </mesh>
   )
 }
