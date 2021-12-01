@@ -5,11 +5,11 @@ import * as THREE from 'three'
 import TM from 'gsap'
 import './Materials'
 
-export default function Image() {
+export default function Image({ position, texturePath, textureHoverPath }) {
   const ref = useRef()
   const [uTexture, uTexture2] = useLoader(THREE.TextureLoader, [
-    './images/love_1.jpg',
-    './images/love_2.jpg'
+    texturePath,
+    textureHoverPath
   ])
 
   useFrame((state, delta) => {
@@ -18,10 +18,9 @@ export default function Image() {
 
   return (
     <mesh
-      position={[0, 0, 0]}
+      position={position}
       renderOrder={IMAGE}
       onPointerEnter={() => {
-        console.log('On It !')
         TM.to(ref.current.uniforms.uVelo, 1.0, {
           value: 1,
           ease: 'expo.out'
