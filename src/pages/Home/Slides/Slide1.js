@@ -18,7 +18,7 @@ import { LOVE_1, LOVE_2 } from '@src/constants/images'
  * @return {Object} Return the dom of the Slide1
  */
 const Slide1 = ({ handleOnClick }) => {
-  const viewport = useThree((state) => state.viewport)
+  const { viewport } = useThree()
   return (
     <mesh position={[0, 0, 0]} renderOrder={SLIDE} onClick={handleOnClick}>
       <planeGeometry args={[viewport.width, viewport.height]} />

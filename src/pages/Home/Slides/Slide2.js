@@ -3,7 +3,7 @@
  * @module Home/slide2
  */
 import React from 'react'
-import { useThree } from '@react-three/fiber'
+import Background from '@src/components/Background'
 
 /**
  * @function Slide2
@@ -11,15 +11,8 @@ import { useThree } from '@react-three/fiber'
  * @param {function} handleOnClick The function to call when we want to change page
  * @return {Object} Return the dom of the Slide2
  */
-const Slide2 = ({ handleOnClick }) => {
-  const { viewport } = useThree()
-
-  return (
-    <mesh position={[0, -viewport.height, 0]} onClick={handleOnClick}>
-      <boxGeometry />
-      <meshPhongMaterial />
-    </mesh>
-  )
+const Slide2 = () => {
+  return <Background />
 }
 
 export default Slide2
