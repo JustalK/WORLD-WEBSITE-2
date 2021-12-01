@@ -4,6 +4,7 @@
  */
 import React from 'react'
 import Background from '@src/components/Background'
+import { MATERIAL_NOISE } from '@src/constants/materials'
 
 /**
  * @function Slide2
@@ -12,7 +13,7 @@ import Background from '@src/components/Background'
  * @return {Object} Return the dom of the Slide2
  */
 const Slide2 = () => {
-  return <Background />
+  return <Background material={MATERIAL_NOISE} />
 }
 
 export default Slide2
