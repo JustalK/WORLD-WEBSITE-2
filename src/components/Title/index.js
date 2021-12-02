@@ -45,7 +45,7 @@ const TitleColor = ({ position, text }) => {
         titleMaterialRef.current.uMouse = e.intersections[0].uv
       }}
     >
-      <textMaterial ref={titleMaterialRef} color="#000fff" />
+      <textMaterial ref={titleMaterialRef} />
     </text>
   )
 }
