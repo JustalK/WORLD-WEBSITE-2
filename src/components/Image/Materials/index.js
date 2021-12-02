@@ -77,19 +77,15 @@ export default class ImageMaterial extends THREE.ShaderMaterial {
       }
       void main()  {
           vec2 newUV = vUv;
+          vec4 from = texture2D(uTexture, vUv);
+
           float c = circle(vUv, uMouse, 0.1 + (1.0 - uVelo), 0.05);
           float r = texture2D(uTexture2, newUV.xy -= c * (0.1 * .15 * uVelo)).x;
           float g = texture2D(uTexture2, newUV.xy -= c * (0.1 * .15 * uVelo)).y;
           float b = texture2D(uTexture2, newUV.xy -= c * (0.1 * .15 * uVelo)).z;
-          vec4 color = vec4(r, g, b, 1.);
+          vec4 to = vec4(r, g, b, 1.);
 
-          float finalMask = smoothstep(0.4, 0.5, c);
-
-        	vec4 hover = texture2D(uTexture, vUv);
-          vec4 from = hover;
-          vec4 to = color;
           float n = noise(vUv * scale);
-
           float p = mix(-smoothness, 1.0 + smoothness, uVelo);
           float lower = p - smoothness;
           float higher = p + smoothness;
