@@ -2,14 +2,14 @@ import React, { useRef, useMemo } from 'react'
 import { useThree, useFrame } from '@react-three/fiber'
 import { SLIDE } from '@src/constants/layers'
 import { MATERIAL_NOISE } from '@src/constants/materials'
-import './Materials/noise'
+import './Materials'
 
 export default function Background({ children, material }) {
   const { viewport } = useThree()
   const materialRef = useRef()
 
   useFrame((state, delta) => {
-    if (materialRef?.current?.uTime) {
+    if (materialRef?.current?.uTime !== null) {
       materialRef.current.uTime += delta
     }
   })
