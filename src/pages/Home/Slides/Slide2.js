@@ -13,7 +13,7 @@ import { MATERIAL_NOISE } from '@src/constants/materials'
  * @return {Object} Return the dom of the Slide2
  */
 const Slide2 = () => {
-  return <Background material={MATERIAL_NOISE} />
+  return <Background material={MATERIAL_NOISE} slide={1} />
 }
 
 export default Slide2

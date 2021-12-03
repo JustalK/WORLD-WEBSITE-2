@@ -4,12 +4,13 @@
  */
 import React from 'react'
 import { useThree } from '@react-three/fiber'
-import { SLIDE } from '@src/constants/layers'
+import Background from '@src/components/Background'
 import Image from '@src/components/Image'
 import Title from '@src/components/Title'
 import Line from '@src/components/Line'
 import * as THREE from 'three'
 import { LOVE_1, LOVE_2 } from '@src/constants/images'
+import { MATERIAL_FOG } from '@src/constants/materials'
 
 /**
  * @function Slide1
@@ -17,12 +18,10 @@ import { LOVE_1, LOVE_2 } from '@src/constants/images'
  * @param {function} handleOnClick The function to call when we want to change page
  * @return {Object} Return the dom of the Slide1
  */
-const Slide1 = ({ handleOnClick }) => {
+const Slide1 = () => {
   const { viewport } = useThree()
   return (
-    <mesh position={[0, 0, 0]} renderOrder={SLIDE} onClick={handleOnClick}>
-      <planeGeometry args={[viewport.width, viewport.height]} />
-      <meshPhongMaterial />
+    <Background material={MATERIAL_FOG} slide={0}>
       <Title position={[0, 0, 0]} text="Title Test" />
       <Image
         position={[0, -4, 0]}
@@ -50,7 +49,7 @@ const Slide1 = ({ handleOnClick }) => {
           new THREE.Vector3((0.6 * viewport.width) / 2, viewport.height / 2, 1)
         ]}
       />
-    </mesh>
+    </Background>
   )
 }
 
