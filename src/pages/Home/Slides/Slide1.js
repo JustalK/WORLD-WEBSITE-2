@@ -7,6 +7,7 @@ import { useThree } from '@react-three/fiber'
 import { SLIDE } from '@src/constants/layers'
 import Image from '@src/components/Image'
 import Title from '@src/components/Title'
+import Line from '@src/components/Line'
 import { LOVE_1, LOVE_2 } from '@src/constants/images'
 
 /**
@@ -27,6 +28,7 @@ const Slide1 = ({ handleOnClick }) => {
         texturePath={LOVE_1}
         textureHoverPath={LOVE_2}
       />
+      <Line />
     </mesh>
   )
 }
