@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import { extend, useFrame } from '@react-three/fiber'
 import { Text } from 'troika-three-text'
+import { MESH_TEXT } from '@src/constants/meshes'
 import TM from 'gsap'
 import './Materials'
 
@@ -26,6 +27,7 @@ const TitleColor = ({ position, text }) => {
       color="#ffffff"
       maxWidth={100}
       text={text}
+      name={MESH_TEXT}
       anchorX="center"
       anchorY="middle"
       ref={titleRef}
@@ -42,7 +44,12 @@ const TitleColor = ({ position, text }) => {
         })
       }}
       onPointerMove={(e) => {
-        titleMaterialRef.current.uMouse = e.intersections[0].uv
+        const background = e.intersections.find(
+          (intersection) => intersection.eventObject.name === MESH_TEXT
+        )
+        if (titleMaterialRef.current && background.object.name === MESH_TEXT) {
+          titleMaterialRef.current.uMouse = background.uv
+        }
       }}
     >
       <textMaterial ref={titleMaterialRef} />

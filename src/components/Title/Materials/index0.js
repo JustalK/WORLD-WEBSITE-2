@@ -16,11 +16,26 @@ export default class TextMaterial extends THREE.ShaderMaterial {
         uTime: { value: 0.0 }
       },
       vertexShader: `
+      uniform vec2 resolution;
       varying vec2 vUv;
+      uniform vec2 uMouse;
       uniform float uTime;
+      uniform float uVelo;
+      float circle(vec2 uv, vec2 disc_center, float disc_radius, float border_size) {
+        uv -= disc_center;
+        uv*=resolution;
+        float dist = sqrt(dot(uv, uv));
+        return smoothstep(disc_radius+border_size, disc_radius-border_size, dist);
+      }
       void main() {
         vUv = uv;
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        float c = circle(vUv, uMouse, 0.2 * (uVelo), 0.05);
+        float finalMask = smoothstep(0.4, 0.5, c);
+        vec3 positionHover = position;
+        positionHover.x += 0.04;
+        positionHover.y += 0.04;
+        vec4 finalPosition = mix(vec4(position, 1.0), vec4(positionHover, 1.0), finalMask);
+        gl_Position = projectionMatrix * modelViewMatrix * finalPosition;
       }`,
       fragmentShader: `
       uniform vec2 resolution;
@@ -40,7 +55,7 @@ export default class TextMaterial extends THREE.ShaderMaterial {
 
           float finalMask = smoothstep(0.4, 0.5, c);
 
-        	vec4 finalImage = mix(vec4(1.0, 1.0, 1.0, 1.0), vec4(0.0, 0.0, 0.0, 0.0), finalMask);
+        	vec4 finalImage = mix(vec4(1.0, 1.0, 1.0, 1.0), vec4(0.0, 0.0, 0.0, 1.0), finalMask);
 
           gl_FragColor = finalImage;
       }`
