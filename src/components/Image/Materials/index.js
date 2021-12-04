@@ -69,30 +69,36 @@ export default class ImageMaterial extends THREE.ShaderMaterial {
           // Mix 4 coorners porcentages
           return mix(a, b, u.x) + (c - a)* u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
       }
-      float circle(vec2 uv, vec2 disc_center, float disc_radius, float border_size) {
+      float circle(vec2 uv, vec2 disc_center, float disc_radius) {
         uv -= disc_center;
         uv*=resolution;
-        float dist = sqrt(dot(uv, uv));
-        return smoothstep(disc_radius+border_size, disc_radius-border_size, dist);
+        float dist = sqrt(dot(uv, uv)) ;
+        return smoothstep(disc_radius * uVelo, disc_radius * uVelo, dist);
       }
       void main()  {
           vec2 newUV = vUv;
-          vec4 from = texture2D(uTexture, vUv);
-
-          float c = circle(vUv, uMouse, 0.1 + (1.0 - uVelo), 0.05);
-          float r = texture2D(uTexture2, newUV.xy -= c * (0.1 * .15 * uVelo)).x;
-          float g = texture2D(uTexture2, newUV.xy -= c * (0.1 * .15 * uVelo)).y;
-          float b = texture2D(uTexture2, newUV.xy -= c * (0.1 * .15 * uVelo)).z;
-          vec4 to = vec4(r, g, b, 1.);
+          float c = circle(vUv, uMouse, 0.1);
+          newUV.x -= 0.05;
+          newUV.y -= 0.05;
+          if (newUV.x < 0.05 || newUV.x > 0.90 || newUV.y < 0.05 || newUV.y > 0.90) {
+            discard;
+          }
 
           float n = noise(vUv * scale);
           float p = mix(-smoothness, 1.0 + smoothness, uVelo);
           float lower = p - smoothness;
           float higher = p + smoothness;
-
           float q = smoothstep(lower, higher, n);
 
-          gl_FragColor = mix(from, to, 1.0 - q);
+          vec4 hover = texture2D(uTexture2, vUv);
+          vec4 finalImage = mix(texture2D(uTexture, newUV*1.1), texture2D(uTexture2, newUV*1.1), 1.0 - q);
+
+          vec4 result = mix(vec4(0.0, 0.0, 0.0, 0.0), finalImage, c);
+          if ( result.a < 0.2) {
+            discard;
+          } else {
+            gl_FragColor = result;
+          }
       }`
     })
   }

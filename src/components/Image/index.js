@@ -23,14 +23,14 @@ export default function Image({ position, texturePath, textureHoverPath }) {
       renderOrder={IMAGE}
       name={MESH_IMAGE}
       onPointerEnter={() => {
-        TM.to(ref.current.uniforms.uVelo, 1.0, {
-          value: 1,
+        TM.to(ref.current.uniforms.uVelo, 1.5, {
+          value: 1.0,
           ease: 'expo.out'
         })
       }}
       onPointerLeave={() => {
-        TM.to(ref.current.uniforms.uVelo, 1.0, {
-          value: 0,
+        TM.to(ref.current.uniforms.uVelo, 1.5, {
+          value: 0.0,
           ease: 'expo.out'
         })
       }}
