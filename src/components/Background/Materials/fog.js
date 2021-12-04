@@ -11,7 +11,7 @@ export default class FogMaterial extends THREE.ShaderMaterial {
             window.innerHeight / window.innerWidth
           )
         },
-        uMouse: { value: new THREE.Vector2(0.1, 0.5) },
+        uMouse: { value: new THREE.Vector2(0, 0) },
         uTime: { value: 0.0 }
       },
       vertexShader: `

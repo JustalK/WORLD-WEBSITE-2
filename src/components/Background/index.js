@@ -29,14 +29,20 @@ export default function Background({ children, material, slide }) {
   return (
     <mesh
       position={[0, -slide * viewport.height, 0]}
-      name={MESH_BACKGROUND}
+      name={`${MESH_BACKGROUND}_${slide}`}
       renderOrder={SLIDE}
       onPointerMove={(e) => {
         const background = e.intersections.find(
-          (intersection) => intersection.eventObject.name === MESH_BACKGROUND
+          (intersection) =>
+            intersection.eventObject.name === `${MESH_BACKGROUND}_${slide}`
         )
-        if (materialRef.current && background.object.name === MESH_BACKGROUND) {
-          materialRef.current.uMouse = background.uv
+        if (
+          materialRef.current &&
+          materialRef.current.uMouse &&
+          background.object.name === `${MESH_BACKGROUND}_${slide}`
+        ) {
+          materialRef.current.uMouse.x = background.uv.x
+          materialRef.current.uMouse.y = background.uv.y
         }
       }}
     >
