@@ -1,3 +1,4 @@
+import './App.css'
 import React, { Suspense, useRef } from 'react'
 import { ROUTE_HOME, ROUTE_SECONDARY } from '@constants/routes'
 import Canvas from '@components/Canvas'
