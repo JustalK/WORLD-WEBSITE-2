@@ -2,12 +2,13 @@ import React, { useRef, useEffect } from 'react'
 import { extend, useFrame } from '@react-three/fiber'
 import { Text } from 'troika-three-text'
 import { MESH_TEXT } from '@src/constants/meshes'
+import { TEXT_H1 } from '@src/constants/texts'
 import TM from 'gsap'
 import './Materials'
 
 extend({ Text })
 
-const TitleColor = ({ position, text }) => {
+const TitleColor = ({ position, text, size = TEXT_H1 }) => {
   const titleMaterialRef = useRef()
   const titleRef = useRef()
 
@@ -22,10 +23,10 @@ const TitleColor = ({ position, text }) => {
   return (
     <text
       position={position}
-      fontSize={1.0}
+      fontSize={size}
       font={'/fonts/Barlow-Regular.ttf'}
       color="#ffffff"
-      maxWidth={100}
+      maxWidth={7}
       text={text}
       name={MESH_TEXT}
       anchorX="center"
