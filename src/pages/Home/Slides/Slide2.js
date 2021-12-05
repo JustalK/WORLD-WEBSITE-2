@@ -24,7 +24,7 @@ const Slide2 = () => {
     <Background material={MATERIAL_NOISE} slide={1}>
       <Title
         position={[0, 0.6 * (viewport.height / 2), 0]}
-        text="JUSTAL KEVIN"
+        text="PORTFOLIO"
         size={TEXT_H2}
       />
       <Title
