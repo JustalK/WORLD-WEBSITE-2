@@ -38,7 +38,7 @@ export default function Home({ loadedPage }) {
         route={ROUTE_SECONDARY}
       />
       <ambientLight intensity={0.1} />
-      <directionalLight color="red" position={[0, 0, 5]} />
+      <directionalLight color="black" position={[0, 0, 5]} />
       <Slide1 handleOnClick={handleOnClick} />
       <Slide2 handleOnClick={handleOnClick} />
       <Slide3 handleOnClick={handleOnClick} />

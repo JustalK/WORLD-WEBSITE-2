@@ -1,7 +1,11 @@
 import React, { useRef, useMemo } from 'react'
 import { useThree, useFrame } from '@react-three/fiber'
 import { SLIDE } from '@src/constants/layers'
-import { MATERIAL_NOISE, MATERIAL_FOG } from '@src/constants/materials'
+import {
+  MATERIAL_NOISE,
+  MATERIAL_FOG,
+  MATERIAL_BLACK
+} from '@src/constants/materials'
 import { MESH_BACKGROUND } from '@src/constants/meshes'
 import './Materials'
 
@@ -10,7 +14,10 @@ export default function Background({ children, material, slide }) {
   const materialRef = useRef()
 
   useFrame((state, delta) => {
-    if (materialRef?.current?.uTime !== null) {
+    if (
+      materialRef?.current?.uTime !== undefined &&
+      materialRef?.current?.uTime !== null
+    ) {
       materialRef.current.uTime += delta
     }
   })
@@ -21,6 +28,8 @@ export default function Background({ children, material, slide }) {
         return <noiseMaterial ref={materialRef} />
       case MATERIAL_FOG:
         return <fogMaterial ref={materialRef} />
+      case MATERIAL_BLACK:
+        return <meshBasicMaterial color="black" />
       default:
         return <meshPhongMaterial />
     }

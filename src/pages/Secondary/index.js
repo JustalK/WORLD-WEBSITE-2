@@ -30,7 +30,7 @@ export default function Secondary({ loadedPage }) {
         route={ROUTE_HOME}
       />
       <ambientLight intensity={0.1} />
-      <directionalLight color="red" position={[0, 0, 5]} />
+      <directionalLight color="black" position={[0, 0, 5]} />
       <mesh position={[0, 0, 0]} onClick={() => (activated.current = true)}>
         <boxGeometry />
         <meshPhongMaterial />

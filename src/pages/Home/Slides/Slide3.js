@@ -4,7 +4,7 @@
  */
 import React from 'react'
 import Background from '@src/components/Background'
-import { MATERIAL_NOISE } from '@src/constants/materials'
+import { MATERIAL_BLACK } from '@src/constants/materials'
 
 /**
  * @function Slide3
@@ -12,15 +12,8 @@ import { MATERIAL_NOISE } from '@src/constants/materials'
  * @param {function} handleOnClick The function to call when we want to change page
  * @return {Object} Return the dom of the Slide3
  */
-const Slide3 = ({ handleOnClick }) => {
-  return (
-    <Background material={MATERIAL_NOISE} slide={2}>
-      <mesh position={[0, 0, 0]} onClick={handleOnClick}>
-        <boxGeometry />
-        <meshPhongMaterial />
-      </mesh>
-    </Background>
-  )
+const Slide3 = () => {
+  return <Background material={MATERIAL_BLACK} slide={2} />
 }
 
 export default Slide3
