@@ -1,3 +1,7 @@
+/**
+ * The module managing the background materials
+ * @module Components/Background/Materials
+ */
 import React, { useRef, useMemo } from 'react'
 import { useThree, useFrame } from '@react-three/fiber'
 import { SLIDE } from '@src/constants/layers'
@@ -9,6 +13,14 @@ import {
 import { MESH_BACKGROUND } from '@src/constants/meshes'
 import './Materials'
 
+/**
+ * @function Background
+ * Create the background element
+ * @param {Object} children The children inside the element
+ * @param {string} material The material to apply from my constants
+ * @param {number} slide The position of the slide (the counter)
+ * @return {Object} Return the dom of the Background
+ */
 export default function Background({ children, material, slide }) {
   const { viewport } = useThree()
   const materialRef = useRef()
