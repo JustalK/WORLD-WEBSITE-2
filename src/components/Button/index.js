@@ -4,8 +4,11 @@
  */
 import React, { useRef, useEffect } from 'react'
 import { extend, useFrame } from '@react-three/fiber'
+import { Text } from 'troika-three-text'
 import { TEXT_SPAN } from '@src/constants/texts'
-import { MESH_TEXT } from '@src/constants/meshes'
+import { MESH_BUTTON } from '@src/constants/meshes'
+import { BUTTON } from '@src/constants/layers'
+import TM from 'gsap'
 import './Materials'
 
 extend({ Text })
@@ -29,9 +32,40 @@ const Button = ({ position, label }) => {
   })
 
   return (
-    <mesh position={position} renderOrder={10000}>
+    <mesh
+      position={position}
+      renderOrder={BUTTON}
+      name={MESH_BUTTON}
+      onPointerEnter={() => {
+        if (titleMaterialRef.current) {
+          TM.to(titleMaterialRef.current.uniforms.uVelo, 0.25, {
+            value: 1,
+            ease: 'expo.out'
+          })
+        }
+      }}
+      onPointerLeave={() => {
+        if (titleMaterialRef.current) {
+          TM.to(titleMaterialRef.current.uniforms.uVelo, 0.25, {
+            value: 0,
+            ease: 'expo.out'
+          })
+        }
+      }}
+      onPointerMove={(e) => {
+        const background = e.intersections.find(
+          (intersection) => intersection.eventObject.name === MESH_BUTTON
+        )
+        if (
+          titleMaterialRef.current &&
+          background.object.name === MESH_BUTTON
+        ) {
+          titleMaterialRef.current.uMouse = background.uv
+        }
+      }}
+    >
       <planeGeometry args={[3.0, 0.5]} />
-      <meshBasicMaterial color="red" />
+      <buttonMaterial ref={titleMaterialRef} />
       <text
         position={[0, 0, 0]}
         fontSize={TEXT_SPAN}
@@ -39,12 +73,11 @@ const Button = ({ position, label }) => {
         color="#ffffff"
         maxWidth={7}
         text={label}
-        name={MESH_TEXT}
         anchorX="center"
         anchorY="middle"
         ref={titleRef}
       >
-        <buttonMaterial ref={titleMaterialRef} />
+        <meshBasicMaterial color="red" />
       </text>
     </mesh>
   )

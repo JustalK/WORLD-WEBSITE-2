@@ -40,9 +40,12 @@ export default class ButtonMaterial extends THREE.ShaderMaterial {
 
           float finalMask = smoothstep(0.4, 0.5, c);
 
-        	vec4 finalImage = mix(vec4(1.0, 1.0, 1.0, 1.0), vec4(0.0, 0.0, 0.0, 0.0), finalMask);
-
-          gl_FragColor = finalImage;
+          vec4 result = mix(vec4(1.0, 0.0, 1.0, 1.0), vec4(0.0, 0.0, 0.0, 0.0), c);
+          if ( result.a < 0.2) {
+            discard;
+          } else {
+            gl_FragColor = result;
+          }
       }`
     })
   }
