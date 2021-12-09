@@ -4,6 +4,8 @@
  */
 import React from 'react'
 import Background from '@src/components/Background'
+import { LOVE_1, LOVE_2 } from '@src/constants/images'
+import Image from '@src/components/Image'
 import { MATERIAL_BLACK } from '@src/constants/materials'
 
 /**
@@ -13,7 +15,15 @@ import { MATERIAL_BLACK } from '@src/constants/materials'
  * @return {Object} Return the dom of the Slide3
  */
 const Slide3 = () => {
-  return <Background material={MATERIAL_BLACK} slide={2} />
+  return (
+    <Background material={MATERIAL_BLACK} slide={2}>
+      <Image
+        position={[0, -4, 0]}
+        texturePath={LOVE_1}
+        textureHoverPath={LOVE_2}
+      />
+    </Background>
+  )
 }
 
 export default Slide3
